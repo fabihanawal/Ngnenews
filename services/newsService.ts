@@ -53,9 +53,18 @@ export const getNews = async (): Promise<NewsItem[]> => {
     if (error || !data || data.length === 0) return mockNews;
     
     return data.map(item => ({
-      ...item,
+      id: item.id,
+      title: item.title,
+      slug: item.slug,
+      category: item.category,
+      district: 'নওগাঁ',
+      upazilaId: item.upazila_id,
       image: item.image_url,
-      date: new Date(item.created_at).toLocaleDateString('bn-BD')
+      content: item.content,
+      author: item.author_name,
+      date: new Date(item.created_at).toLocaleDateString('bn-BD'),
+      isLead: item.is_lead,
+      isBreaking: item.is_breaking
     }));
   } catch (e) {
     return mockNews;
